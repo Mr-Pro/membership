@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="986.5853055383893" y="1813.1177105652723">cn.lger.domain.Admin</node>
+    <node x="1863.1916510121237" y="433.0322313451013">cn.lger.web.GiftController</node>
+    <node x="27.85386517148814" y="2244.706167674567">cn.lger.dao.AdminDao</node>
+    <node x="852.9377246312024" y="956.0800138610502">cn.lger.web.CommodityController</node>
+    <node x="1433.2501857655543" y="681.2899317731839">cn.lger.service.GiftService</node>
+    <node x="761.5630771060755" y="604.0989043405606">cn.lger.service.TransactionRecordService</node>
+    <node x="1791.9900941833746" y="310.02582988330386">cn.lger.domain.Gift</node>
+    <node x="1131.3479710463544" y="206.7233207304639">cn.lger.domain.Commodity</node>
+    <node x="830.5853055383893" y="1813.1177105652723">cn.lger.domain.AdminRole</node>
+    <node x="1309.562233028358" y="450.36633559994397">cn.lger.domain.Member</node>
+    <node x="656.5853055383893" y="1813.1177105652723">cn.lger.util.FileUploadUtil</node>
+    <node x="464.5853055383894" y="1813.1177105652723">cn.lger.util.UUIDRandomUtil</node>
+    <node x="1060.6692129752992" y="1073.7054007369734">cn.lger.web.BirthdayWarningController</node>
+    <node x="1142.3340962262453" y="696.5100234989038">cn.lger.service.CommodityService</node>
+    <node x="1641.6507348038156" y="1124.4947976897051">cn.lger.service.MemberGradeService</node>
+    <node x="921.5298795709119" y="366.70341732118436">cn.lger.dao.TransactionRecordDao</node>
+    <node x="541.6666666666666" y="360.60669187650717">cn.lger.web.TransactionRecordController</node>
+    <node x="1141.834096226245" y="517.6859030907101">cn.lger.domain.TransactionRecord</node>
+    <node x="1359.5888122481792" y="1086.4510438986056">cn.lger.dao.MemberGradeDao</node>
+    <node x="12.993077716455517" y="2039.1295493349517">cn.lger.service.AdminService</node>
+    <node x="17.58530553838939" y="2462.262053162841">cn.lger.web.AdminController</node>
+    <node x="1309.237107899166" y="762.7072360894133">cn.lger.dao.MemberDao</node>
+    <node x="1891.8744898110008" y="940.0168472035011">cn.lger.web.MemberGradeController</node>
+    <node x="1467.9290239694017" y="286.66666666666663">cn.lger.domain.MemberGrade</node>
+    <node x="785.8782722223509" y="761.2253387746589">cn.lger.dao.CommodityDao</node>
+    <node x="1952.6189349456972" y="496.49636210162043">cn.lger.service.ExchangeRecordService</node>
+    <node x="1169.0073273776493" y="874.0441466466601">cn.lger.service.MemberService</node>
+    <node x="1412.511019666449" y="528.009732643997">cn.lger.domain.ExchangeRecord</node>
+    <node x="1988.2643765846851" y="664.7669980558288">cn.lger.web.ExchangeRecordController</node>
+    <node x="1821.880906149715" y="863.7250480512839">cn.lger.dao.GiftDao</node>
+    <node x="1654.1421024155895" y="634.0968791559106">cn.lger.dao.ExchangeRecordDao</node>
+    <node x="205.58530553838938" y="1813.1177105652723">cn.lger.util.MemberNumberRandomUtil</node>
+    <node x="0.0" y="1813.117710565272">cn.lger.web.LoginController</node>
+    <node x="1489.8596549945205" y="958.7224537823818">cn.lger.web.MemberController</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.1" x="1035.861111111111" y="789.361111111111" />
+  <SelectedNodes>
+    <node>cn.lger.service.TransactionRecordService</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

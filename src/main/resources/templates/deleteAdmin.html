@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection"/>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!--&lt;!&ndash; Google Fonts&ndash;&gt;-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>-->
+    <!--<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">-->
+</head>
+
+<body>
+
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse"
+                    data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand waves-effect waves-dark" th:href="@{/}"><i
+                    class="large material-icons">insert_chart</i>
+                <strong>Lger 会员系统</strong></a>
+
+            <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+        </div>
+        <!--用户登录信息-->
+        <ul class="nav navbar-top-links navbar-right">
+            <li><a class="dropdown-button waves-effect waves-dark" href="#" data-activates="dropdown1"><i
+                    class="fa fa-user fa-fw"></i> <b th:unless="${session.admin == null}" th:text="${session.admin.username}"></b> <i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </nav>
+    <!--用户登录栏的具体信息-->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a th:href="@{/myAccount}"><i class="fa fa-user fa-fw"></i>我的账户</a>
+        </li>
+        <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
+        </li>
+    </ul>
+    <!--侧边栏-->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a class="waves-effect waves-dark" th:href="@{/}"><i class="fa fa-dashboard"></i>
+                        首页</a>
+                </li>
+
+                <li class="">
+                    <a th:href="@{/myAccount}" class="waves-effect waves-dark"><i class="fa fa-user"></i>
+                        管理员信息</a>
+                </li>
+
+                <li>
+                    <a class="waves-effect waves-dark" th:href="@{/addAdmin}"><i class="fa fa-plus"></i>
+                        添加管理员</a>
+                </li>
+
+                <li class="active">
+                    <a class="active-menu waves-effect waves-dark" th:href="@{/deleteAdmin}"><i class="fa fa-minus"></i>
+                        删除管理员</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!--内容主体-->
+    <div id="page-wrapper">
+        <!--内容主题-->
+        <div class="header">
+            <h1 class="page-header">
+                管理员删除
+            </h1>
+        </div>
+        <div id="page-inner">
+            <!--自定义内容-->
+            <div class="card">
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <table class="table table-striped table-bordered table-hover dataTable no-footer"
+                                   id="dataTables-example" aria-describedby="dataTables-example_info">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Rendering engine: activate to sort column ascending"
+                                        aria-sort="ascending">用户名
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Browser: activate to sort column ascending"
+                                    >用户邮箱
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                    >用户电话
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                    >操作
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody id="tableContent">
+
+
+                                </tbody>
+                            </table>
+
+                            <div aria-label="Page navigation example">
+                                <ul class="pagination" id="page">
+                                    <!--<li class="page-item"><a class="page-link" href="#">aaa</a></li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--页脚-->
+            <br>
+            <br>
+            <br>
+            <footer><p class="text-center">Copyright &copy; 2017.Company name All rights reserved.</p></footer>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/materialize/js/materialize.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+
+<script src="assets/js/easypiechart.js"></script>
+<script src="assets/js/easypiechart-data.js"></script>
+
+<script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+
+<script>
+    var totalPages = 1;
+
+    function updateData(pageNum) {
+        if (pageNum < 1 || pageNum > totalPages)
+            return;
+        $.ajax({
+            url: '/queryAllAdmin',
+            dataType: 'JSON',
+            type: 'POST',
+            data: {currentPage: pageNum - 1},
+            success: function (data) {
+                console.log(data);
+                totalPages = data.totalPages;
+                var flag = 0;
+                var tableContent = $('#tableContent');
+                tableContent.html('');
+                $.each(data.content, function (index, content) {
+                    console.log(content);
+                    if (flag % 2 === 1)
+                        tableContent.html(tableContent.html() + fillTableHtml('gradeU odd', content));
+                    else
+                        tableContent.html(tableContent.html() + fillTableHtml('gradeU even', content));
+
+                    function fillTableHtml(clazz, content) {
+                        return '<tr class="' + clazz + '">' +
+                            '<td style="display:none">' + content.id + '</td>' +
+                            '<td>' + content.username + '</td>' +
+                            '<td>' + content.email + '</td>' +
+                            '<td>'+content.phone+'</td>' +
+                            '<td><button class="btn-danger btn" onclick="deleteAdmin(this)">删除</button></td></tr>';
+                    }
+                });
+
+                //totalPages
+                if (data.number + 1 >= totalPages - 1)
+                    var inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + (totalPages - 1) + ')" href="javascript:void(0)">上一页</a></li>';
+                if (data.number <= 0)
+                    inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + 1 + ')" href="javascript:void(0)">上一页</a></li>';
+                else
+                    inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + data.number + ')" href="javascript:void(0)">上一页</a></li>';
+
+                for (var i = data.number - 1; i <= data.number + 3; i++) {
+                    if (i < 1)
+                        continue;
+                    if (i > data.totalPages)
+                        break;
+                    if (data.number + 1 === i)
+                        inHTML += '<li class="active page-item"><a class="page-link" onclick="updateData(' + i + ')" href="javascript:void(0)">' + i + '</a></li>';
+                    else
+                        inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + i + ')" href="javascript:void(0)">' + i + '</a></li>';
+                }
+                if (data.number + 1 >= totalPages)
+                    inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + totalPages + ')" href="javascript:void(0)">下一页</a></li>';
+                else
+                    inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + (data.number + 2) + ')" href="javascript:void(0)">下一页</a></li>';
+                $('#page').html(inHTML);
+
+            }
+        })
+    }
+
+    updateData(1);
+
+    function deleteAdmin(btn) {
+        if (confirm('确认删除？')) {
+            var info = $(btn).parent().parent();
+            var id = $(info.children()[0]).text();
+            $.ajax({
+                url: '/deleteAdmin',
+                type: 'POST',
+                data: {id: id},
+                success: function (data) {
+                    alert(data);
+                    if (data === 'success'){
+                        info.remove();
+                    }
+                }
+
+            })
+        }
+    }
+</script>
+
+</body>
+
+</html>

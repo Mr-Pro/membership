@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+</head>
+<body>
+hello
+<a th:href="@{/hello}">hahaha</a>
+<p th:text="${msg}"></p>
+<!--<div th:if="${session.cat == null}">-->
+    <!--<span th:text="${cat.catName}"></span>-->
+<!--</div>-->
+<!--<div th:unless="${session.cat != null}">-->
+     <!--<span th:text="${cat.catName}"></span>-->
+<!--</div>-->
+<!--<span th:text="${cat.catName}"></span>-->
+<span th:if="${not #lists.isEmpty(cat)}" th:text="${cat.catName}">
+
+
+</span>
+<a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+</body>
+</html>

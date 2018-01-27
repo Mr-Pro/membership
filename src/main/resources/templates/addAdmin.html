@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection"/>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!--&lt;!&ndash; Google Fonts&ndash;&gt;-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>-->
+    <!--<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">-->
+</head>
+
+<body>
+
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse"
+                    data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand waves-effect waves-dark" th:href="@{/}"><i
+                    class="large material-icons">insert_chart</i>
+                <strong>Lger 会员系统</strong></a>
+
+            <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+        </div>
+        <!--用户登录信息-->
+        <ul class="nav navbar-top-links navbar-right">
+            <li><a class="dropdown-button waves-effect waves-dark" href="#" data-activates="dropdown1"><i
+                    class="fa fa-user fa-fw"></i> <b th:unless="${session.admin == null}" th:text="${session.admin.username}"></b> <i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </nav>
+    <!--用户登录栏的具体信息-->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a th:href="@{/myAccount}"><i class="fa fa-user fa-fw"></i>我的账户</a>
+        </li>
+        <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
+        </li>
+    </ul>
+    <!--侧边栏-->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a class="waves-effect waves-dark" th:href="@{/}"><i class="fa fa-dashboard"></i>
+                        首页</a>
+                </li>
+
+                <li class="">
+                    <a th:href="@{/myAccount}" class="waves-effect waves-dark"><i class="fa fa-user"></i>
+                        管理员信息</a>
+                </li>
+
+                <li class="active">
+                    <a class="active-menu waves-effect waves-dark" th:href="@{/addAdmin}"><i class="fa fa-plus"></i>
+                        添加管理员</a>
+                </li>
+
+                <li>
+                    <a class="waves-effect waves-dark" th:href="@{/deleteAdmin}"><i class="fa fa-minus"></i>
+                        删除管理员</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+    <!--内容主体-->
+    <div id="page-wrapper">
+        <!--内容主题-->
+        <div class="header">
+            <h1 class="page-header">
+                添加管理员
+            </h1>
+        </div>
+        <div id="page-inner">
+            <!--自定义内容-->
+            <!--<div class="container">-->
+            <div class="card">
+                <div th:if="${session.admin.role == 'S_ADMIN'}" class="card-content">
+
+                    <form onsubmit="submitForm()">
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input placeholder="用户名" id="username" type="text" class="validate" name="username" required/>
+                                <label for="username">用户名</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="phone" name="phone" type="tel" class="validate" placeholder="联系电话" required/>
+                                <label for="phone">联系电话</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input placeholder="用户密码" id="password" type="password" class="validate" name="password" onchange="confirmPassword()" required/>
+                                <label for="password">用户密码</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="confirm" type="password" class="validate" placeholder="确认密码" onchange="confirmPassword()" required/>
+                                <label for="confirm">确认密码</label>
+                            </div>
+                            <script>
+
+                                function confirmPassword(){
+                                    var password = document.getElementById('password');
+                                    var password2 = document.getElementById('confirm');
+
+                                    if (password2.value === '')
+                                        return;
+                                    if (password.value === ''){
+                                        alert('密码不能为空');
+                                        return false;
+                                    }
+
+                                    if (password.value !== password2.value){
+                                        password2.setAttribute('class', 'invalid');
+                                        alert('密码不一致！！');
+                                        return false;
+                                    }
+                                    password2.setAttribute('class', 'valid');
+                                    return true;
+                                }
+                            </script>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="email" name="email" type="email" class="validate" placeholder="邮箱" required/>
+                                <label for="email">邮箱</label>
+                            </div>
+                        </div>
+
+                        <button onclick="submitForm()" class="waves-effect waves-light btn" type="button">添加管理员</button>
+                        <button class="waves-effect waves-light btn" type="reset">重置数据</button>
+                    </form>
+
+                    <div class="clearBoth"></div>
+                </div>
+                <div th:if="${session.admin.role != 'S_ADMIN'}" class="alert alert-danger">
+                    <strong>不好意思!</strong>只有超级管理员才有权限添加新的管理员
+                </div>
+                <!--</div>-->
+            </div>
+            <!--页脚-->
+            <br>
+            <br>
+            <br>
+            <footer><p class="text-center">Copyright &copy; 2017.Company name All rights reserved.</p></footer>
+        </div>
+
+    </div>
+</div>
+
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/materialize/js/materialize.min.js"></script>
+
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+
+<script src="assets/js/easypiechart.js"></script>
+<script src="assets/js/easypiechart-data.js"></script>
+
+<script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+
+<script>
+    function submitForm() {
+        if (confirmPassword()){
+            var obj1= document.getElementById('username').value;
+            var obj2 = document.getElementById('password').value;
+            var obj3 = document.getElementById('email').value;
+            var obj4 = document.getElementById('phone').value;
+            $.ajax({
+                url: '/addAdmin',
+                type: 'POST',
+                data: {username: obj1, password:obj2,email:obj3 ,phone:obj4},
+                success: function (data) {
+                    alert(data);
+                    document.getElementsByTagName('form')[0].reset()
+                }
+            })
+        }
+    }
+
+</script>
+</body>
+
+</html>

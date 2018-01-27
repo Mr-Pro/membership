@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection"/>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!--&lt;!&ndash; Google Fonts&ndash;&gt;-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>-->
+    <!--<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">-->
+    <style>
+        .modal {
+            background-color: #76767600;
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.0);
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse"
+                    data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand waves-effect waves-dark" th:href="@{/}"><i
+                    class="large material-icons">insert_chart</i>
+                <strong>Lger 会员系统</strong></a>
+
+            <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+        </div>
+        <!--用户登录信息-->
+        <ul class="nav navbar-top-links navbar-right">
+            <li><a class="dropdown-button waves-effect waves-dark" href="#" data-activates="dropdown1"><i
+                    class="fa fa-user fa-fw"></i> <b th:unless="${session.admin == null}"
+                                                     th:text="${session.admin.username}"></b> <i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </nav>
+    <!--用户登录栏的具体信息-->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a th:href="@{/myAccount}"><i class="fa fa-user fa-fw"></i>我的账户</a>
+        </li>
+        <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
+        </li>
+    </ul>
+    <!--侧边栏-->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a class="waves-effect waves-dark" th:href="@{/}"><i class="fa fa-dashboard"></i>
+                        首页</a>
+                </li>
+                <!--会员管理栏-->
+                <li>
+                    <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="fa fa-user"></i>会员管理<span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a th:href="@{/addMember}">添加会员</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/queryMember}">查询会员</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/memberGrade}">会员类别</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/modifyMemberState}">会员状态修改</a>
+                        </li>
+
+                        <li>
+                            <a href="#">会员消费<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level" aria-expanded="true">
+                                <li>
+                                    <a th:href="@{/integralExchange}">积分兑换</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/balanceRecharge}">余额充值</a>
+                                </li>
+                            </ul>
+
+                        </li>
+
+                        <li>
+                            <a th:href="@{/deleteMember}">会员注销</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--礼品栏-->
+                <li>
+                    <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="fa fa-gift"></i>礼品消费<span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a th:href="@{/setGift}">礼品设置</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/modifyGiftNumber}">数量修改</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/exchangeRecord}">兑换记录</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--商品消费-->
+                <li class="active">
+                    <a href="javascript:void(0)" class="active-menu waves-effect waves-dark"><i class="fa fa-yen"></i>商品消费<span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true">
+                        <li>
+                            <a th:href="@{/addCommodity}">添加商品</a>
+                        </li>
+
+                        <li>
+                            <a class="active-menu" th:href="@{/modifyCommodity}">商品修改</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/purchaseCommodity}">商品购买</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/transactionRecord}">积分记录</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="waves-effect waves-dark" th:href="@{/birthdayWarning}"><i class="fa fa-birthday-cake"></i>
+                        生日提醒</a>
+                </li>
+
+                <li>
+                    <a class="waves-effect waves-dark" th:href="@{/integralLottery}"><i class="fa fa-star"></i>
+                        积分抽奖</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!--内容主体-->
+    <div id="page-wrapper">
+        <!--内容主题-->
+        <div class="header">
+            <h1 class="page-header">
+                商品修改
+            </h1>
+        </div>
+        <div id="page-inner">
+            <!--自定义内容-->
+            <div class="card">
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <table class="table table-striped table-bordered table-hover dataTable no-footer"
+                                   id="dataTables-example" aria-describedby="dataTables-example_info">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Rendering engine: activate to sort column ascending"
+                                        aria-sort="ascending">商品名称
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Browser: activate to sort column ascending"
+                                    >商品数量
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                    >商品价格
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                    >可得积分
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                    >操作
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody id="tableContent">
+
+
+                                </tbody>
+
+                            </table>
+
+                            <div aria-label="Page navigation example">
+                                <ul class="pagination" id="page">
+                                    <!--<li class="page-item"><a class="page-link" href="#">aaa</a></li>-->
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--页脚-->
+            <br>
+            <br>
+            <br>
+            <footer><p class="text-center">Copyright &copy; 2017.Company name All rights reserved.</p></footer>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="myModalLabel">修改会员类别</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="display: none">
+                    <label for="commodityId">商品id</label>
+                    <input type="text" class="form-control" id="commodityId" placeholder="会员等级id">
+                </div>
+                <div class="form-group">
+                    <label for="commodityName">商品名称</label>
+                    <input type="text" class="form-control" id="commodityName" placeholder="商品名称">
+                </div>
+                <div class="form-group">
+                    <label for="commodityNumber">商品数量</label>
+                    <input type="text" class="form-control" id="commodityNumber" placeholder="商品数量">
+                </div>
+                <div class="form-group">
+                    <label for="commodityPrice">商品价格</label>
+                    <input type="text" class="form-control" id="commodityPrice" placeholder="商品价格">
+                </div>
+                <div class="form-group">
+                    <label for="commodityIntegral">可得积分</label>
+                    <input type="text" class="form-control" id="commodityIntegral" placeholder="商品数量">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn waves-effect waves-light" onclick="updateCommodity()">保存修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/materialize/js/materialize.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+
+<script src="assets/js/easypiechart.js"></script>
+<script src="assets/js/easypiechart-data.js"></script>
+
+<script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+
+<script>
+    var totalPages = 1;
+
+    function updateData(pageNum) {
+        if (pageNum < 1 || pageNum > totalPages)
+            return;
+        $.ajax({
+                    url: '/queryAllCommodity',
+            dataType: 'JSON',
+            type: 'POST',
+            data: {currentPage: pageNum - 1},
+            success: function (data) {
+                console.log(data);
+                totalPages = data.totalPages;
+                var flag = 0;
+                var tableContent = $('#tableContent');
+                tableContent.html('');
+                $.each(data.content, function (index, content) {
+                    console.log(content);
+                    if (flag % 2 === 1)
+                        tableContent.html(tableContent.html() + fillTableHtml('gradeU odd', content));
+                    else
+                        tableContent.html(tableContent.html() + fillTableHtml('gradeU even', content));
+
+                    function fillTableHtml(clazz, content) {
+                        return '<tr class="' + clazz + '">' +
+                            '<td style="display:none">' + content.id + '</td>' +
+                            '<td>' + content.commodityName + '</td>' +
+                            '<td>' + content.commodityNumber + '</td>' +
+                            '<td>' + content.commodityPrice + '</td>' +
+                            '<td>' + content.commodityIntegral + '</td>' +
+                            '<td><button class="waves-effect waves-light btn" data-toggle="modal" data-target="#myModal" onclick="openModelWindow(this)">修改</button></td>' +
+                            '</tr>';
+                    }
+                });
+
+                //totalPages
+                if (data.number + 1 >= totalPages - 1)
+                    var inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + (totalPages - 1) + ')" href="javascript:void(0)">上一页</a></li>';
+                if (data.number <= 0)
+                    inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + 1 + ')" href="javascript:void(0)">上一页</a></li>';
+                else
+                    inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + data.number + ')" href="javascript:void(0)">上一页</a></li>';
+
+                for (var i = data.number - 1; i <= data.number + 3; i++) {
+                    if (i < 1)
+                        continue;
+                    if (i > data.totalPages)
+                        break;
+                    if (data.number + 1 === i)
+                        inHTML += '<li class="active page-item"><a class="page-link" onclick="updateData(' + i + ')" href="javascript:void(0)">' + i + '</a></li>';
+                    else
+                        inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + i + ')" href="javascript:void(0)">' + i + '</a></li>';
+                }
+                if (data.number + 1 >= totalPages)
+                    inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + totalPages + ')" href="javascript:void(0)">下一页</a></li>';
+                else
+                    inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + (data.number + 2) + ')" href="javascript:void(0)">下一页</a></li>';
+                $('#page').html(inHTML);
+
+            }
+        })
+    }
+
+    updateData(1);
+
+    var info;
+    function openModelWindow(btn) {
+        info = $(btn).parent().parent();
+
+        $('#commodityId').val($(info.children()[0]).text());
+        $('#commodityName').val($(info.children()[1]).text());
+        $('#commodityNumber').val($(info.children()[2]).text());
+        $('#commodityPrice').val($(info.children()[3]).text());
+        $('#commodityIntegral').val($(info.children()[4]).text());
+        $('#myModal').modal('show');
+    }
+
+    function updateCommodity() {
+        var commodityId = $('#commodityId').val();
+        var commodityName = $('#commodityName').val();
+        var commodityNumber = $('#commodityNumber').val();
+        var commodityPrice = $('#commodityPrice').val();
+        var commodityIntegral = $('#commodityIntegral').val();
+
+        $.ajax({
+            url: '/updateCommodity',
+            type: 'POST',
+            data: {id: commodityId,commodityPrice:commodityPrice,commodityNumber:commodityNumber, commodityIntegral:commodityIntegral, commodityName:commodityName},
+            success: function (data) {
+                var modal = $('#myModal');
+                modal.attr('class', 'modal fade');
+                modal.attr('aria-hidden','true');
+                modal.attr('style','display:none');
+                $('.modal-backdrop')[0].remove();
+                $('body').attr('class', '').attr('style', '');
+
+                if (data === 'success') {
+                    $(info.children()[1]).text(commodityName);
+                    $(info.children()[2]).text(commodityNumber);
+                    $(info.children()[3]).text(commodityPrice);
+                    $(info.children()[4]).text(commodityIntegral);
+                }
+                alert(data);
+            }
+        })
+    }
+
+</script>
+
+</body>
+
+</html>

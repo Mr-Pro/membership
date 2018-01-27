@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection"/>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!--&lt;!&ndash; Google Fonts&ndash;&gt;-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>-->
+    <!--<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">-->
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse"
+                    data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand waves-effect waves-dark" th:href="@{/}"><i
+                    class="large material-icons">insert_chart</i>
+                <strong>Lger 会员系统</strong></a>
+
+            <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+        </div>
+        <!--用户登录信息-->
+        <ul class="nav navbar-top-links navbar-right">
+            <li><a class="dropdown-button waves-effect waves-dark" href="#" data-activates="dropdown1"><i
+                    class="fa fa-user fa-fw"></i> <b th:unless="${session.admin == null}" th:text="${session.admin.username}"></b> <i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </nav>
+    <!--用户登录栏的具体信息-->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a th:href="@{/myAccount}"><i class="fa fa-user fa-fw"></i>我的账户</a>
+        </li>
+        <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
+        </li>
+    </ul>
+    <!--侧边栏-->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a class="waves-effect waves-dark" th:href="@{/}"><i class="fa fa-dashboard"></i>
+                        首页</a>
+                </li>
+                <!--会员管理栏-->
+                <li class="active">
+                    <a href="javascript:void(0)" class="active-menu waves-effect waves-dark"><i class="fa fa-user"></i>会员管理<span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true">
+                        <li>
+                            <a th:href="@{/addMember}">添加会员</a>
+                        </li>
+                        <li>
+                            <a class="active-menu" th:href="@{/queryMember}">查询会员</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/memberGrade}">会员类别</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/modifyMemberState}">会员状态修改</a>
+                        </li>
+
+                        <li>
+                            <a href="#">会员消费<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a th:href="@{/integralExchange}">积分兑换</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/balanceRecharge}">余额充值</a>
+                                </li>
+                            </ul>
+
+                        </li>
+
+                        <li>
+                            <a th:href="@{/deleteMember}">会员注销</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--礼品栏-->
+                <li>
+                    <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="fa fa-gift"></i>礼品消费<span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a th:href="@{/setGift}">礼品设置</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/modifyGiftNumber}">数量修改</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/exchangeRecord}">兑换记录</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--商品消费-->
+                <li>
+                    <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="fa fa-yen"></i>商品消费<span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a th:href="@{/addCommodity}">添加商品</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/modifyCommodity}">商品修改</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/purchaseCommodity}">商品购买</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/transactionRecord}">积分记录</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="waves-effect waves-dark" th:href="@{/birthdayWarning}"><i class="fa fa-birthday-cake"></i>
+                        生日提醒</a>
+                </li>
+
+                <li>
+                    <a class="waves-effect waves-dark" th:href="@{/integralLottery}"><i class="fa fa-star"></i>
+                        积分抽奖</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!--内容主体-->
+    <div id="page-wrapper">
+        <!--内容主题-->
+        <div class="header">
+            <h1 class="page-header">
+                查询会员
+            </h1>
+        </div>
+        <div id="page-inner">
+            <!--自定义内容-->
+            <div class="card">
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div id="dataTables-example_filter" class="dataTables_filter"><label>搜索会员名:
+                                        <input onkeydown="if(event.keyCode===13) updateData(1);" id="search" type="search" class="form-control input-sm"
+                                            aria-controls="dataTables-example"></label></div>
+                                </div>
+                            </div>
+                            <table class="table table-striped table-bordered table-hover dataTable no-footer"
+                                   id="dataTables-example" aria-describedby="dataTables-example_info">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Rendering engine: activate to sort column ascending"
+                                        aria-sort="ascending">会员账号
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Browser: activate to sort column ascending"
+                                    >会员名
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                    >会员电话
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                    >会员邮箱
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Engine version: activate to sort column ascending"
+                                    >会员生日
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                    >会员积分
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                    >会员余额
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                    >会员等级
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                    >性别
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                    >会员状态
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody id="tableContent">
+
+
+                                </tbody>
+                            </table>
+
+                            <div aria-label="Page navigation example">
+                                <ul class="pagination" id="page">
+                                    <!--<li class="page-item"><a class="page-link" href="#">aaa</a></li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--页脚-->
+            <br>
+            <br>
+            <br>
+            <footer><p class="text-center">Copyright &copy; 2017.Company name All rights reserved.</p></footer>
+        </div>
+
+    </div>
+</div>
+
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/materialize/js/materialize.min.js"></script>
+
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+
+<script src="assets/js/easypiechart.js"></script>
+<script src="assets/js/easypiechart-data.js"></script>
+
+<script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+
+<script>
+    var totalPages = 1;
+
+    function updateData(pageNum) {
+        if (pageNum < 1 || pageNum > totalPages)
+            return;
+        var memberName = document.getElementById('search').value;
+        $.ajax({
+            url: '/queryMember',
+            dataType: 'JSON',
+            type: 'POST',
+            data: {currentPage: pageNum - 1, memberName:memberName},
+            success: function (data) {
+                console.log(data);
+                totalPages =data.totalPages;
+                var flag = 0;
+                var tableContent = $('#tableContent');
+                tableContent.html('');
+                $.each(data.content, function (index, content) {
+                    console.log(content);
+                    if (flag % 2 === 1)
+                        tableContent.html(tableContent.html() + fillTableHtml('gradeU odd', content));
+                    else
+                        tableContent.html(tableContent.html() + fillTableHtml('gradeU even', content));
+
+                    function fillTableHtml(clazz, content) {
+                        return '<tr class="' + clazz + '">' +
+                            '<td>' + content.id + '</td>' +
+                            '<td>' + content.memberName + '</td>' +
+                            '<td>' + content.phone + '</td>' +
+                            '<td>' + content.email + '</td>' +
+                            '<td>' + content.birthday + '</td>' +
+                            '<td>' + content.memberIntegral + '</td>' +
+                            '<td>' + content.balance + '</td>' +
+                            '<td>' + content.memberGrade.gradeName + '</td>' +
+                            '<td>' + content.sex + '</td>' +
+                            '<td>' + content.state + '</td>'
+                            + '</tr>';
+                    }
+                });
+
+                //totalPages
+                if (data.number+1 >= totalPages-1)
+                    var inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + (totalPages-1) + ')" href="javascript:void(0)">上一页</a></li>';
+                if (data.number <= 0 )
+                    inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + 1 + ')" href="javascript:void(0)">上一页</a></li>';
+                else
+                    inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + data.number + ')" href="javascript:void(0)">上一页</a></li>';
+
+                for (var i = data.number - 1; i <= data.number + 3; i++) {
+                    if (i<1)
+                        continue;
+                    if (i>data.totalPages)
+                        break;
+                    if (data.number+1 === i)
+                        inHTML += '<li class="active page-item"><a class="page-link" onclick="updateData(' + i+ ')" href="javascript:void(0)">'+i+'</a></li>';
+                    else
+                        inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + i+ ')" href="javascript:void(0)">'+i+'</a></li>';
+                }
+                if (data.number + 1 >= totalPages)
+                    inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + totalPages + ')" href="javascript:void(0)">下一页</a></li>';
+                else
+                    inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + (data.number + 2) + ')" href="javascript:void(0)">下一页</a></li>';
+                $('#page').html(inHTML);
+
+            }
+        })
+    }
+
+    updateData(1);
+
+</script>
+
+</body>
+
+</html>

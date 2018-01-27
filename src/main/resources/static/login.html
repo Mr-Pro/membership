@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>login</title>
+    <link rel="stylesheet" href="assets/login/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection"/>
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/login/tether.min.js"></script>
+    <script src="assets/login/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container pt-5">
+    <div class="col-sm-12 col-md-5 col-lg-5 m-auto pt-5 mt-5">
+        <!--登陆框-->
+        <div class="card" style="border-radius: 10px">
+            <div class="card-block">
+                <!--标题-->
+                <h2 class="card-title"><i class="fa fa-user" aria-hidden="true"></i>管理员登录</h2>
+                <span class="text-muted text-danger"> </span>
+                <hr>
+                <!--用户输入框-->
+                <div class="input-group ">
+                    <input type="text" class="form-control" placeholder="管理员" id="username">
+                </div>
+                <br/>
+                <!--密码输入框-->
+                <div class="input-group">
+                    <input type="password" class="form-control" placeholder="密码" id="password">
+                </div>
+                <br/>
+                <br/>
+                <!--登录按钮-->
+                <div align="center" style="padding-bottom: 10%">
+                    <button class="btn btn-outline-success" type="button" style="width: 12rem" onclick="login()">登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLiveLabel">信息</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div id="modalInfo" class="modal-body font-weight-bold">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭窗口</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var modal = $('#exampleModal');
+    var info = $('#modalInfo');
+
+    function login() {
+        var username = $('#username').val();
+        var password = $('#password').val();
+        $.ajax({
+            type: 'POST',
+            data: {username: username, password: password},
+            dataType: "JSON",
+            url: '/login',
+            success: function (data) {
+                if (data['success'] === '1') {
+                    var url = data['url'];
+                    info.html('登录成功！<span id="time">3</span>秒后跳转<a href="' + url + '">现在跳转</a>');
+                    setInterval(function () {
+                        var time = $('#time');
+                        var currentTime = time.text();
+                        currentTime = parseInt(currentTime);
+                        currentTime--;
+                        if (currentTime <= 0) {
+                            window.location.href = url;
+                        } else {
+                            time.text(currentTime);
+                        }
+                    }, 1000);
+                    modal.modal('show');
+                } else {
+                    info.html('登录失败！请检查密码或用户名是否出错');
+                    modal.modal('show');
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
