@@ -8,3 +8,4 @@
 - 积分抽奖：通过管理员设置抽奖积分然后随机分配给一位会员；
 - 生日提醒：通过富文本编辑器提供人性化的邮件提醒服务；
  
+项目导入运行步骤可以前往博客文章[CSDN](http://blog.csdn.net/lger_pro/article/details/79181044)或[cnblogs](https://www.cnblogs.com/lger/p/8366320.html)
