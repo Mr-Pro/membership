@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 @ServletComponentScan
 @Controller
-@PropertySource("classpath:emailConfig.properties")
 public class MembershipApplication {
 
     public static void main(String[] args) {

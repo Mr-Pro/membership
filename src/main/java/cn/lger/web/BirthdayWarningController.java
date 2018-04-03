@@ -27,8 +27,7 @@ import java.util.Properties;
  * Created by Pro on 2017-12-20.
  */
 @Controller
-//需要注入值加注解
-@Configuration
+@PropertySource("classpath:emailConfig.properties")
 public class BirthdayWarningController {
 
     @Resource
