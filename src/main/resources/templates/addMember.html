@@ -43,7 +43,7 @@
         <!--用户登录信息-->
         <ul class="nav navbar-top-links navbar-right">
             <li><a class="dropdown-button waves-effect waves-dark" href="#" data-activates="dropdown1"><i
-                    class="fa fa-user fa-fw"></i> <b th:unless="${session.admin == null}" th:text="${session.admin.username}"></b> <i
+                    class="fa fa-user fa-fw"></i> <b th:unless="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username == null}" th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></b> <i
                     class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
     </nav>

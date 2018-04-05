@@ -51,13 +51,13 @@ public class GiftService {
     }
 
     public void deleteGift(Integer giftId) {
-        giftDao.delete(giftId);
+        giftDao.deleteById(giftId);
     }
 
     @Transactional
     public void integralExchange(String memberId, Integer giftId) {
         Member member = memberDao.findMemberById(memberId);
-        Gift gift = giftDao.findOne(giftId);
+        Gift gift = giftDao.findById(giftId).isPresent()?giftDao.findById(giftId).get():null;
 
         //确保存在两个id的实体
         if (member != null && gift != null) {

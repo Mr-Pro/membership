@@ -36,7 +36,7 @@ public class MemberController {
     private MemberGradeService memberGradeService;
 
     @GetMapping("/addMember")
-    public String getaddMemberView() {
+    public String getAddMemberView() {
         return "addMember";
     }
 
@@ -96,6 +96,12 @@ public class MemberController {
         return "modifyMemberState";
     }
 
+    @PostMapping("/modifyMemberState")
+    @ResponseBody
+    public String modifyMemberStateView(String id, String state) {
+        memberService.modifyMemberState(id, state);
+        return "modifyMemberState";
+    }
 
     @GetMapping("/deleteMember")
     public String getDeleteMemberView() {

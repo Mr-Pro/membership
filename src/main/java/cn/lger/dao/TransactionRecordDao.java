@@ -14,8 +14,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TransactionRecordDao extends JpaRepository<TransactionRecord, String>{
 
-    TransactionRecord findById(String id);
-
     Page<TransactionRecord> findAll(Pageable pageable);
 
     Page<TransactionRecord> findAllByMemberId(Pageable pageable, String memberId);

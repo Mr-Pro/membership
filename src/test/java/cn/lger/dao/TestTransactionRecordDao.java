@@ -44,7 +44,7 @@ public class TestTransactionRecordDao {
     @Test
     public void test02(){
         TransactionRecord transactionRecord =
-                transactionRecordDao.findById("2c9ba08b6064ba9d016064bab7110000");
+                transactionRecordDao.findById("2c9ba08b6064ba9d016064bab7110000").get();
         System.out.println(transactionRecord);
     }
 

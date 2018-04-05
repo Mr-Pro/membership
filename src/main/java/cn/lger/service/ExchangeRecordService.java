@@ -23,12 +23,12 @@ public class ExchangeRecordService {
     private ExchangeRecordDao exchangeRecordDao;
 
     public Page<ExchangeRecord> findTransactionRecord(Integer currentPage){
-        Pageable pageable = new PageRequest(currentPage, 3);
+        Pageable pageable = PageRequest.of(currentPage, 3);
         return exchangeRecordDao.findAll(pageable);
     }
 
     public Page<ExchangeRecord> findTransactionRecordByMemberId(Integer currentPage, String memberId) {
-        Pageable pageable = new PageRequest(currentPage, 3);
+        Pageable pageable = PageRequest.of(currentPage, 3);
         return exchangeRecordDao.findAllByMemberId(pageable, memberId);
     }
 }

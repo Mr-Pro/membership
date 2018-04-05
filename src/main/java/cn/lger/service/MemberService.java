@@ -44,9 +44,8 @@ public class MemberService {
         if (currentPage == null){
             currentPage = 1;
         }
-        Pageable pageable = new PageRequest(currentPage, 3, Sort.Direction.ASC, "id");
-        Page<Member> page = memberDao.findAllByMemberName(memberName, pageable);
-        return page;
+        Pageable pageable = PageRequest.of(currentPage, 3, Sort.Direction.ASC, "id");
+        return memberDao.findAllByMemberName(memberName, pageable);
     }
 
     @Transactional
@@ -61,7 +60,7 @@ public class MemberService {
     }
 
     public void deleteMember(String memberId){
-        memberDao.delete(memberId);
+        memberDao.deleteById(memberId);
     }
 
     @Transactional
@@ -80,7 +79,7 @@ public class MemberService {
         int count = memberDao.queryAllCount();
         Random random = new Random();
         count = random.nextInt(count);
-        Pageable pageable = new PageRequest(count, 1);
+        Pageable pageable = PageRequest.of(count, 1);
         Page<Member> page = memberDao.findAll(pageable);
         PageImpl page1 = (PageImpl) page;
         Member member = (Member) page1.getContent().get(0);

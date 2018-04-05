@@ -15,8 +15,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExchangeRecordDao extends JpaRepository<ExchangeRecord, String>{
 
-    ExchangeRecord findById(String id);
-
     Page<ExchangeRecord> findAll(Pageable pageable);
 
     Page<ExchangeRecord> findAllByMemberId(Pageable pageable, String memberId);

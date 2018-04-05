@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2017-12-21 23:08:39
+Date: 2018-04-05 22:46:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,8 +32,8 @@ CREATE TABLE `admin` (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', '123', 'G_ADMIN', '123', '123123@qq.com', '123232132');
-INSERT INTO `admin` VALUES ('2', 'admin', 'S_ADMIN', 'admin', null, null);
+INSERT INTO `admin` VALUES ('1', '$2a$10$ntVrmW5Q.hcvJ1M4vKvLVuiCpoMJAEYZqJMvSQ5TKzAe6PdDn3Gky', 'G_ADMIN', '123', '123123@qq.com', '123232132');
+INSERT INTO `admin` VALUES ('2', '$2a$10$ntVrmW5Q.hcvJ1M4vKvLVuiCpoMJAEYZqJMvSQ5TKzAe6PdDn3Gky', 'S_ADMIN', 'admin', '123123@qq.com', '1231232');
 
 -- ----------------------------
 -- Table structure for commodity
@@ -65,20 +65,19 @@ CREATE TABLE `exchange_record` (
   PRIMARY KEY  (`id`),
   KEY `FKq7e6h8mogedtw6esuoyrkgbe1` (`gift_id`),
   KEY `FKshbsm33hs4ck8c5b9f8mh9qem` (`member_id`),
-  CONSTRAINT `FKshbsm33hs4ck8c5b9f8mh9qem` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FKq7e6h8mogedtw6esuoyrkgbe1` FOREIGN KEY (`gift_id`) REFERENCES `gift` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FKq7e6h8mogedtw6esuoyrkgbe1` FOREIGN KEY (`gift_id`) REFERENCES `gift` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FKshbsm33hs4ck8c5b9f8mh9qem` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of exchange_record
 -- ----------------------------
 INSERT INTO `exchange_record` VALUES ('2c9ba08b6064ba9d016064bab71100as', '20171215143150425', '2');
-INSERT INTO `exchange_record` VALUES ('2c9bc2e6606d2d4401606d4a9b670001', '2017121514185175', '7');
-INSERT INTO `exchange_record` VALUES ('2c9bc2e6606d2d4401606d4ae2420002', '2017121514185175', '7');
-INSERT INTO `exchange_record` VALUES ('2c9bc2e6606d2d4401606d4aecd80003', '2017121514185175', '7');
 INSERT INTO `exchange_record` VALUES ('2c9bc2e6606d2d4401606d4b424400', '20171215143945448', '2');
 INSERT INTO `exchange_record` VALUES ('2c9bc2e6606d2d4401606d4b42440004', '2017121514185175', '8');
 INSERT INTO `exchange_record` VALUES ('2cd4a08b6064ba9d016064bab7110000', '20171215142401745', '1');
+INSERT INTO `exchange_record` VALUES ('e4c08f0f6294792b0162947afd6f0000', '2017121514185175', '8');
+INSERT INTO `exchange_record` VALUES ('e4c08f0f6294792b0162947b41810001', '2017121514185175', '2');
 
 -- ----------------------------
 -- Table structure for gift
@@ -97,9 +96,23 @@ CREATE TABLE `gift` (
 -- Records of gift
 -- ----------------------------
 INSERT INTO `gift` VALUES ('1', '100', '小熊维尼', '10', '20');
-INSERT INTO `gift` VALUES ('2', '50', '米奇', '19', '10');
-INSERT INTO `gift` VALUES ('7', '2343', '323', '0', '2332');
-INSERT INTO `gift` VALUES ('8', '2343', '323', '2', '2332');
+INSERT INTO `gift` VALUES ('2', '50', '米奇', '18', '10');
+INSERT INTO `gift` VALUES ('8', '2343', '323', '1', '2332');
+
+-- ----------------------------
+-- Table structure for hibernate_sequence
+-- ----------------------------
+DROP TABLE IF EXISTS `hibernate_sequence`;
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hibernate_sequence
+-- ----------------------------
+INSERT INTO `hibernate_sequence` VALUES ('1');
+INSERT INTO `hibernate_sequence` VALUES ('1');
+INSERT INTO `hibernate_sequence` VALUES ('1');
 
 -- ----------------------------
 -- Table structure for member
@@ -126,15 +139,14 @@ CREATE TABLE `member` (
 -- ----------------------------
 -- Records of member
 -- ----------------------------
-INSERT INTO `member` VALUES ('2017121514185175', '123', '2017-12-06', '2928', 'sdhfhsdf', '123', '122222222', '男', '正常', '1', '123455892@qq.com', '/assets/icon/01.jpg');
-INSERT INTO `member` VALUES ('20171215141851753', '0', '2017-12-03', '2262', '123', '123', '123', '女', '挂失', '1', '123455892@qq.com', '/assets/icon/01.jpg');
+INSERT INTO `member` VALUES ('2017121514185175', '123', '2018-04-03', '535', 'sdhfhsdf', '123', '122222222', '男', '正常', '1', '123455892@qq.com', '/assets/icon/01.jpg');
+INSERT INTO `member` VALUES ('20171215141851753', '0', '2018-04-05', '2262', '123', '123', '123', '女', '挂失', '1', '123455892@qq.com', '/assets/icon/01.jpg');
 INSERT INTO `member` VALUES ('20171215142401745', '0', '2017-12-05', '200', '123333', '12', '12323123123', '女', '停用', '1', '12312@qq.com', '/assets/icon/01.jpg');
 INSERT INTO `member` VALUES ('20171215143150425', '0', '2013-12-21', '201', '123', '123', '123', '女', '挂失', '1', '1111@qq.com', '/assets/icon/01.jpg');
 INSERT INTO `member` VALUES ('20171215143945448', '100.1', '2017-12-31', '0', '123', '123', '123213123123', '女', '正常', '2', '123455892@qq.com', '/assets/icon/01.jpg');
 INSERT INTO `member` VALUES ('20171220163147750', '0', '2017-12-21', '0', '骚男', '123', '12312312312', '男', '正常', '1', '2222@163.com', '/static/assets/icon/e45c34da0e5748f8aa78929cf45d6a0c.jpg');
 INSERT INTO `member` VALUES ('20171220163440900', '0', '2017-12-21', '0', '哈哈', '123', '2131231231231', '女', '正常', '2', '222222@163.com', '/assets/icon/aaf5ebe176d0415eb0667d88d3a5162f.jpg');
 INSERT INTO `member` VALUES ('2017122121594813', '0', '2017-12-17', '0', '我是会员', '123', '020-2222222222', '男', '正常', '1', '123123@qq.com', '/static/assets/icon/common.jpg');
-INSERT INTO `member` VALUES ('20171221220207858', '0', '2017-12-09', '0', '我是会员', '123', '020-2222222', '男', '正常', '1', '123123@qq.com', '/assets/icon/efe5b411ac644020a1b3c9666211cee0.jpg');
 
 -- ----------------------------
 -- Table structure for member_grade
@@ -152,7 +164,7 @@ CREATE TABLE `member_grade` (
 -- ----------------------------
 -- Records of member_grade
 -- ----------------------------
-INSERT INTO `member_grade` VALUES ('1', '普通会员', '100', '9.8', '数据我改过了，打我呀');
+INSERT INTO `member_grade` VALUES ('1', '普通会员', '100', '9.8', '数据我改过了，打我呀!!');
 INSERT INTO `member_grade` VALUES ('2', '高级会员', '1000', '9.5', '数据我修改了，哈哈');
 INSERT INTO `member_grade` VALUES ('3', '特级会员', null, '9', '测试测试');
 
@@ -167,8 +179,8 @@ CREATE TABLE `transaction_record` (
   PRIMARY KEY  (`id`),
   KEY `FKc0uvpwiqycu4oxaxpik7hmli1` (`member_id`),
   KEY `FKs4kvgkphxwmfmakoqyk03xnoa` (`commodity_id`),
-  CONSTRAINT `FKs4kvgkphxwmfmakoqyk03xnoa` FOREIGN KEY (`commodity_id`) REFERENCES `commodity` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FKc0uvpwiqycu4oxaxpik7hmli1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FKc0uvpwiqycu4oxaxpik7hmli1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FKs4kvgkphxwmfmakoqyk03xnoa` FOREIGN KEY (`commodity_id`) REFERENCES `commodity` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

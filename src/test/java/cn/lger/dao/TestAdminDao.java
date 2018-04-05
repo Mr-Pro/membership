@@ -2,12 +2,14 @@ package cn.lger.dao;
 
 import cn.lger.domain.Admin;
 import cn.lger.domain.AdminRole;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * Code that Changed the World
@@ -45,5 +47,12 @@ public class TestAdminDao {
         admin.setRole(AdminRole.S_ADMIN);
 
         adminDao.save(admin);
+    }
+
+    @Test
+    public void test03() throws IOException {
+        Admin admin = adminDao.findAdminByUsername("asds");
+//        Runtime.getRuntime().exec( "cmd   cls ");
+        System.out.println(admin == null);
     }
 }

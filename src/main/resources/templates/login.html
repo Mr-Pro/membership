@@ -21,17 +21,17 @@
             <div class="card-block">
                 <!--标题-->
                 <h2 class="card-title"><i class="fa fa-user" aria-hidden="true"></i>管理员登录</h2>
-                <span class="text-muted text-danger" th:unless="${msg == null}" th:text="${msg}"></span>
+                <span class="text-muted text-danger" th:unless="${error == null}" th:text="${error}"></span>
                 <hr>
                 <form th:action="@{/login}" method="post">
                     <!--用户输入框-->
                     <div class="input-group ">
-                        <input type="text" class="form-control" placeholder="管理员" id="username" name="username" required>
+                        <input type="text" class="form-control" placeholder="管理员" id="username" name="username" th:value="${username}" required>
                     </div>
                     <br/>
                     <!--密码输入框-->
                     <div class="input-group">
-                        <input type="password" class="form-control" placeholder="密码" name="password" id="password">
+                        <input type="password" class="form-control" placeholder="密码" th:value="${password}" name="password" id="password">
                     </div>
                     <br/>
                     <br/>

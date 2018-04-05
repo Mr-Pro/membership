@@ -75,7 +75,7 @@ public class TestMemberDao {
      */
     @Test
     public void test05(){
-        memberDao.delete("201712151");
+        memberDao.deleteById("201712151");
     }
 
 

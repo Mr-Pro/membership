@@ -81,7 +81,7 @@ public class CommodityService {
 
 
     public void updateMemberGrade(Commodity commodity) {
-        if (commodityDao.findOne(commodity.getId())!=null){
+        if (commodityDao.findById(commodity.getId())!=null){
             commodityDao.save(commodity);
             return;
         }
