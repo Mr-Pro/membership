@@ -21,6 +21,8 @@ public class CustomerLoginSuccessHandler extends SavedRequestAwareAuthentication
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        //SecurityContextHolder是Spring Security的核心组件，可获取框架爱内的一些信息
+        //这里我得到登录成功后的UserDetails
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             request.getSession().setAttribute("admin", ((CustomerUserDetails) principal).getAdmin());

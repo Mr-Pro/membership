@@ -18,6 +18,7 @@ import java.util.Set;
 public class CustomerUserDetails implements UserDetails {
 
     private Admin admin = null;
+    //存放权限的集合
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean accountNonExpired;
     private final boolean accountNonLocked;
