@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,9 @@ public class AdminController {
 
     @Resource
     private AdminDao adminDao;
+
+    @Resource
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/modifyAdmin")
     @ResponseBody
@@ -75,6 +79,7 @@ public class AdminController {
         if (!admin1.getRole().equals(AdminRole.S_ADMIN.toString())){
             return "你不是超级管理员";
         }
+        admin.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
         admin.setRole(AdminRole.G_ADMIN);
         adminDao.save(admin);
         return "添加成功";
