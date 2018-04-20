@@ -11,6 +11,7 @@ import cn.lger.util.FileUploadUtil;
 import cn.lger.util.MemberNumberRandomUtil;
 import cn.lger.util.UUIDRandomUtil;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +35,9 @@ public class MemberController {
     private MemberService memberService;
     @Resource
     private MemberGradeService memberGradeService;
+    @Resource
+    private BCryptPasswordEncoder encoder;
+
 
     @GetMapping("/addMember")
     public String getAddMemberView() {
@@ -65,6 +69,7 @@ public class MemberController {
         member.setState("正常");
         member.setBalance((float) 0);
         member.setMemberIntegral(0L);
+        member.setPassword(encoder.encode(member.getPassword()));
 //        System.out.println(member);
         member = memberService.addMember(member);
 

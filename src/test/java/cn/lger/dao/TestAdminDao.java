@@ -6,7 +6,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -27,8 +30,10 @@ public class TestAdminDao {
      * 测试保存会员
      */
     @Test
+    @Transactional
     public void test01(){
         Admin admin = new Admin();
+        admin.setId(123);
         admin.setUsername("123");
         admin.setPassword("123");
         admin.setRole(AdminRole.G_ADMIN);

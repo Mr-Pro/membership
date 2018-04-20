@@ -1,5 +1,6 @@
 package cn.lger.dao;
 
+import cn.lger.domain.Commodity;
 import cn.lger.domain.TransactionRecord;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -60,6 +63,25 @@ public class TestTransactionRecordDao {
         Pageable pageable = new PageRequest(0, 3);
         Page<TransactionRecord> page = transactionRecordDao.findAllByMemberId(pageable, "20171215143945448");
         System.out.println(page);
+    }
+
+    @Test
+    @Transactional
+//    @Rollback(false)
+    public void test05(){
+        Commodity commodity = new Commodity();
+        commodity.setId("2c9bweew6dsb7110000");
+//        commodity.setCommodityName("132ffdsadf东风公司东风公司第三方公司的 上的");
+        commodity.setCommodityPrice(123F);
+        commodity.setCommodityIntegral(111L);
+
+//        commodityDao.save(commodity);
+        commodity.setCommodityName("safd");
+//        commodityDao.flush();
+        commodityDao.save(commodity);
+
+//        commodityDao.flush();
+//        int a = 1 / 0;
     }
 
 }
