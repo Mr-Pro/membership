@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Code that Changed the World
@@ -23,7 +24,7 @@ public class FileUploadUtil {
      */
     public static String upload(MultipartFile multipartFile, String prefixPath, String fileName) throws Exception {
         //得出上传的绝对路径
-        String uploadPath = ClassUtils.getDefaultClassLoader().getResource("").getPath() +"/static"+ prefixPath;
+        String uploadPath = Objects.requireNonNull(ClassUtils.getDefaultClassLoader().getResource("")).getPath() +"/static"+ prefixPath;
         File file = new File(uploadPath);
         if (!file.exists())
             if (file.mkdirs())
