@@ -16,7 +16,7 @@ public class FileUploadUtil {
     /**
      * 上传文件
      * @param multipartFile multipartFile
-     * @param prefixPath 前缀路径，相对于整个项目中的路径，路径最前面不用加入“/”
+     * @param prefixPath 前缀路径
      * @param fileName 上传后的文件名
      * @return 上传后最终的相对路径+文件名
      * @throws Exception 有可能空指针异常和IO异常
