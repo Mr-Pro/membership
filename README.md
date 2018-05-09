@@ -18,5 +18,7 @@ tips:
 - 部分Dao方法不能使用，比如findById返回对象由实体对象改为为Optional对象
 - 修改部分bug，如：会员状态无法修改情况
 
- 
+
+默认密码都是123，登录名为 admin || 123
+
 项目导入运行步骤可以前往博客文章[CSDN](http://blog.csdn.net/lger_pro/article/details/79181044)或[cnblogs](https://www.cnblogs.com/lger/p/8366320.html)

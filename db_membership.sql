@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2018-05-09 21:57:12
+Date: 2018-05-09 22:13:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,8 +34,6 @@ CREATE TABLE `admin` (
 -- ----------------------------
 INSERT INTO `admin` VALUES ('1', '$2a$10$ntVrmW5Q.hcvJ1M4vKvLVuiCpoMJAEYZqJMvSQ5TKzAe6PdDn3Gky', 'G_ADMIN', '123', '123123@qq.com', '123232132');
 INSERT INTO `admin` VALUES ('2', '$2a$10$ntVrmW5Q.hcvJ1M4vKvLVuiCpoMJAEYZqJMvSQ5TKzAe6PdDn3Gky', 'S_ADMIN', 'admin', '123123@qq.com', '1231232');
-INSERT INTO `admin` VALUES ('3', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', 'G_ADMIN', '123', null, null);
-INSERT INTO `admin` VALUES ('4', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', 'G_ADMIN', '123', null, null);
 
 -- ----------------------------
 -- Table structure for commodity
@@ -154,6 +152,7 @@ INSERT INTO `member` VALUES ('20171220163147750', '0', '2017-12-21', '0', '骚�
 INSERT INTO `member` VALUES ('20171220163440900', '0', '2017-12-21', '0', '哈哈', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '2131231231231', '女', '正常', '2', '222222@163.com', '/assets/icon/aaf5ebe176d0415eb0667d88d3a5162f.jpg');
 INSERT INTO `member` VALUES ('2017122121594813', '0', '2017-12-17', '0', '我是会员', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '020-2222222222', '男', '正常', '1', '123123@qq.com', '/static/assets/icon/common.jpg');
 INSERT INTO `member` VALUES ('20180425140053754', '0', '2018-04-25', '0', '123', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '1111', '男', '正常', '1', '123455892@qq.com', '/assets/icon/98e450358a41485385e33a39ec6b6a45.jpg');
+INSERT INTO `member` VALUES ('20180509220432554', '0', '2018-05-12', '0', '啊啊啊', '$2a$10$rodvsbUqsbItp2Kf13zpk.l5XYrW27/JnxigTHtq5v.e/leAIBrSu', '12333333', '女', '挂失', '3', '123455892@qq.com', '/assets/icon/common.jpg');
 
 -- ----------------------------
 -- Table structure for member_grade
