@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : ASUS_Pro
+Source Server         : study
 Source Server Version : 50022
 Source Host           : localhost:3306
 Source Database       : db_membership
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2018-04-05 22:46:47
+Date: 2018-05-09 21:57:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,6 +34,8 @@ CREATE TABLE `admin` (
 -- ----------------------------
 INSERT INTO `admin` VALUES ('1', '$2a$10$ntVrmW5Q.hcvJ1M4vKvLVuiCpoMJAEYZqJMvSQ5TKzAe6PdDn3Gky', 'G_ADMIN', '123', '123123@qq.com', '123232132');
 INSERT INTO `admin` VALUES ('2', '$2a$10$ntVrmW5Q.hcvJ1M4vKvLVuiCpoMJAEYZqJMvSQ5TKzAe6PdDn3Gky', 'S_ADMIN', 'admin', '123123@qq.com', '1231232');
+INSERT INTO `admin` VALUES ('3', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', 'G_ADMIN', '123', null, null);
+INSERT INTO `admin` VALUES ('4', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', 'G_ADMIN', '123', null, null);
 
 -- ----------------------------
 -- Table structure for commodity
@@ -53,6 +55,11 @@ CREATE TABLE `commodity` (
 -- ----------------------------
 INSERT INTO `commodity` VALUES ('2c9ba08b60634aab016063caa6650000', '210', '英国蛋糕', '100', '100');
 INSERT INTO `commodity` VALUES ('2c9bc008606839470160684477410000', '200', 'aaaaa', '19', '100');
+INSERT INTO `commodity` VALUES ('2c9bc20262de39bb0162de3a28080000', '111', '132ffd', null, '123');
+INSERT INTO `commodity` VALUES ('2c9bc20262de478d0162de47c81d0000', '111', '132ffd', null, '123');
+INSERT INTO `commodity` VALUES ('2c9bc20262de4a960162de4ac4540000', '111', '132ffd', null, '123');
+INSERT INTO `commodity` VALUES ('2c9bc20262de4c850162de4cc0160000', '111', '132ffd', null, '123');
+INSERT INTO `commodity` VALUES ('2c9bc20262de4e1a0162de4e4f330000', '111', '132ffd', null, '123');
 
 -- ----------------------------
 -- Table structure for exchange_record
@@ -110,9 +117,9 @@ CREATE TABLE `hibernate_sequence` (
 -- ----------------------------
 -- Records of hibernate_sequence
 -- ----------------------------
-INSERT INTO `hibernate_sequence` VALUES ('1');
-INSERT INTO `hibernate_sequence` VALUES ('1');
-INSERT INTO `hibernate_sequence` VALUES ('1');
+INSERT INTO `hibernate_sequence` VALUES ('5');
+INSERT INTO `hibernate_sequence` VALUES ('5');
+INSERT INTO `hibernate_sequence` VALUES ('5');
 
 -- ----------------------------
 -- Table structure for member
@@ -139,14 +146,14 @@ CREATE TABLE `member` (
 -- ----------------------------
 -- Records of member
 -- ----------------------------
-INSERT INTO `member` VALUES ('2017121514185175', '123', '2018-04-03', '535', 'sdhfhsdf', '123', '122222222', '男', '正常', '1', '123455892@qq.com', '/assets/icon/01.jpg');
-INSERT INTO `member` VALUES ('20171215141851753', '0', '2018-04-05', '2262', '123', '123', '123', '女', '挂失', '1', '123455892@qq.com', '/assets/icon/01.jpg');
-INSERT INTO `member` VALUES ('20171215142401745', '0', '2017-12-05', '200', '123333', '12', '12323123123', '女', '停用', '1', '12312@qq.com', '/assets/icon/01.jpg');
-INSERT INTO `member` VALUES ('20171215143150425', '0', '2013-12-21', '201', '123', '123', '123', '女', '挂失', '1', '1111@qq.com', '/assets/icon/01.jpg');
-INSERT INTO `member` VALUES ('20171215143945448', '100.1', '2017-12-31', '0', '123', '123', '123213123123', '女', '正常', '2', '123455892@qq.com', '/assets/icon/01.jpg');
-INSERT INTO `member` VALUES ('20171220163147750', '0', '2017-12-21', '0', '骚男', '123', '12312312312', '男', '正常', '1', '2222@163.com', '/static/assets/icon/e45c34da0e5748f8aa78929cf45d6a0c.jpg');
-INSERT INTO `member` VALUES ('20171220163440900', '0', '2017-12-21', '0', '哈哈', '123', '2131231231231', '女', '正常', '2', '222222@163.com', '/assets/icon/aaf5ebe176d0415eb0667d88d3a5162f.jpg');
-INSERT INTO `member` VALUES ('2017122121594813', '0', '2017-12-17', '0', '我是会员', '123', '020-2222222222', '男', '正常', '1', '123123@qq.com', '/static/assets/icon/common.jpg');
+INSERT INTO `member` VALUES ('2017121514185175', '123', '2018-04-13', '535', 'sdhfhsdf', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '122222222', '男', '正常', '1', '123455892@qq.com', '/assets/icon/01.jpg');
+INSERT INTO `member` VALUES ('20171215142401745', '0', '2017-12-05', '200', '123333', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '12323123123', '女', '停用', '1', '12312@qq.com', '/assets/icon/01.jpg');
+INSERT INTO `member` VALUES ('20171215143150425', '0', '2013-12-21', '201', '123', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '123', '女', '挂失', '1', '1111@qq.com', '/assets/icon/01.jpg');
+INSERT INTO `member` VALUES ('20171215143945448', '100.1', '2017-12-31', '0', '123', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '123213123123', '女', '正常', '2', '123455892@qq.com', '/assets/icon/01.jpg');
+INSERT INTO `member` VALUES ('20171220163147750', '0', '2017-12-21', '0', '骚男', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '12312312312', '男', '正常', '1', '2222@163.com', '/static/assets/icon/e45c34da0e5748f8aa78929cf45d6a0c.jpg');
+INSERT INTO `member` VALUES ('20171220163440900', '0', '2017-12-21', '0', '哈哈', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '2131231231231', '女', '正常', '2', '222222@163.com', '/assets/icon/aaf5ebe176d0415eb0667d88d3a5162f.jpg');
+INSERT INTO `member` VALUES ('2017122121594813', '0', '2017-12-17', '0', '我是会员', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '020-2222222222', '男', '正常', '1', '123123@qq.com', '/static/assets/icon/common.jpg');
+INSERT INTO `member` VALUES ('20180425140053754', '0', '2018-04-25', '0', '123', '$2a$10$w.jltPc24a/IBnBZC4.SJ.JrWJ2gR0h5j4d4/qdn3cV4bwe1bRBLK', '1111', '男', '正常', '1', '123455892@qq.com', '/assets/icon/98e450358a41485385e33a39ec6b6a45.jpg');
 
 -- ----------------------------
 -- Table structure for member_grade
