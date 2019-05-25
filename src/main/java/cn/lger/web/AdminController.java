@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,12 +34,14 @@ public class AdminController {
 
     @PostMapping("/modifyAdmin")
     @ResponseBody
-    public String getModifyAdminView(Admin admin, HttpSession session){
+    public String modifyAdmin(Admin admin, HttpSession session){
         Admin adminSession = (Admin) session.getAttribute("admin");
         Optional<Admin> optional = adminDao.findById(adminSession.getId());
         if (optional.isPresent()) {
             Admin adminFromDB = optional.get();
-            adminFromDB.setPassword(admin.getPassword());
+            if (StringUtils.hasText(admin.getPassword())) {
+                adminFromDB.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
+            }
             adminFromDB.setUsername(admin.getUsername());
             adminFromDB.setEmail(admin.getEmail());
             adminFromDB.setPhone(admin.getPhone());
